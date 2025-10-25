@@ -2,13 +2,13 @@
 </script>
 
 <template>
-  <div class="workouts-list-view">
-    <div class="workouts-list-view__title">Workouts List</div>
+  <div class="kpi-view">
+    <div class="kpi-view__title">KPIs</div>
   </div>
 </template>
 
 <style lang="scss">
-.workouts-list-view {
+.kpi-view {
   &__title {
     color: #0F0C5D;
     font-weight: bold;

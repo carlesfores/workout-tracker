@@ -1,12 +1,11 @@
 <script setup>
+import MainHeader from "@/components/main-header.vue";
 import MainNav from "@/components/main-nav.vue";
 </script>
 
 <template>
   <div class="container">
-    <div class="main-header">
-      <h1>Entry Point</h1>
-    </div>
+    <main-header></main-header>
     <main-nav></main-nav>
     <router-view></router-view>
   </div>
@@ -14,11 +13,10 @@ import MainNav from "@/components/main-nav.vue";
 
 <style lang="scss">
 .container {
-  background-color: blanchedalmond;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   height: 100%;
-}
-
-.main-header {
-
+  padding: 8px 16px;
 }
 </style>
