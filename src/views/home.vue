@@ -5,6 +5,6 @@
   <div>Home</div>
 </template>
 
-<style>
+<style lang="scss">
 
 </style>

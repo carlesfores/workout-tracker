@@ -5,6 +5,6 @@
   <div>Admin</div>
 </template>
 
-<style>
+<style lang="scss">
 
 </style>

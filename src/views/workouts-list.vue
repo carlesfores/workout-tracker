@@ -5,6 +5,6 @@
   <div>Workouts List</div>
 </template>
 
-<style>
+<style lang="scss">
 
 </style>
