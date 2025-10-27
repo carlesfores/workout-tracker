@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/home.vue";
 import WorkoutsList from "../views/workouts-list.vue";
 import Workout from "../views/workout.vue";
-import Kpi from "../views/kpi.vue";
+import Statistics from "../views/statistics.vue";
 import Admin from "../views/admin.vue";
 
 const routes = [
@@ -22,9 +22,9 @@ const routes = [
     component: Workout,
   },
   {
-    path: "/kpi",
-    name: "kpi",
-    component: Kpi,
+    path: "/statistics",
+    name: "statistics",
+    component: Statistics,
   },
   {
     path: "/admin",

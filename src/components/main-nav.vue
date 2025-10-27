@@ -8,7 +8,7 @@ const currentPath = ref("/");
 
 const routes = [
   {
-    label: "Home",
+    label: "Lock Room",
     name: "home",
     path: "/",
   },
@@ -18,14 +18,9 @@ const routes = [
     path: "/workouts-list",
   },
   {
-    label: "[Workout]",
-    name: "workout",
-    path: "/workout",
-  },
-  {
-    label: "KPI's",
-    name: "kpi",
-    path: "/kpi",
+    label: "Statistics",
+    name: "statistics",
+    path: "/statistics",
   },
   {
     label: "Admin",

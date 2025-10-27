@@ -1,28 +1,32 @@
-<script setup></script>
+<script setup>
+import workoutStatus from "@/components/workout-status.vue";
+
+const props = defineProps({
+  title: {
+    type: String,
+    required: true
+  },
+  showStatus: {
+    type: Boolean,
+    default: false,
+  }
+});
+</script>
 
 <template>
   <div class="workout-card">
     <div class="workout-card__header">
-      <div class="workout-card__header-title">(Biceps + Chest) Workout</div>
-      <div class="workout-card__header-status">TO DO</div>
+      <div class="workout-card__header-title">{{ title }}</div>
+      <workout-status v-if="showStatus"></workout-status>
     </div>
     <div class="workout-card__content">
       <div>
-        <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum. -->
+        <div>DAY: Monday</div>
+      </div>
+      <div>
+        <div>EXCERCICES: B1, B2, B5</div>
       </div>
     </div>
-    <!-- <div class="workout__badget-list">
-      <div class="workout__badget">title workout</div>
-      <div class="workout__badget">Biceps (bagdet)</div>
-      <div class="workout__badget">Triceps (bagdet)</div>
-      <div class="workout__badget">Shoulders (bagdet)</div>
-    </div> -->
   </div>
 </template>
 
@@ -30,11 +34,15 @@
 .workout-card {
   display: flex;
   flex-direction: column;
-  min-height: 64px;
+  min-height: 128px;
   width: 100%;
   background-color: #ffffff;
+  border: 1px solid #0f0c5d;
+  // box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+  //   rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 
   &__header {
+    background-color: #c9cde8;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -43,6 +51,9 @@
 
   &__content {
     padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 }
 </style>

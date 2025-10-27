@@ -2,7 +2,7 @@
 
 <template>
   <div class="main-header">
-    <div>Entry Point</div>
+    <div>Entry Point Sandbox v0.0.0</div>
     <div></div>
   </div>
 </template>
