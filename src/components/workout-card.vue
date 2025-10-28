@@ -2,29 +2,29 @@
 import workoutStatus from "@/components/workout-status.vue";
 
 const props = defineProps({
-  title: {
-    type: String,
-    required: true
+  workout: {
+    type: Object,
+    required: true,
   },
   showStatus: {
     type: Boolean,
     default: false,
-  }
+  },
 });
 </script>
 
 <template>
   <div class="workout-card">
     <div class="workout-card__header">
-      <div class="workout-card__header-title">{{ title }}</div>
+      <div class="workout-card__header-title">{{ workout.title }}</div>
       <workout-status v-if="showStatus"></workout-status>
     </div>
     <div class="workout-card__content">
       <div>
-        <div>DAY: Monday</div>
+        <div>{{ (workout.day || []).toString() }}</div>
       </div>
       <div>
-        <div>EXCERCICES: B1, B2, B5</div>
+        <div>{{ (workout.excercices || []).toString() }}</div>
       </div>
     </div>
   </div>
