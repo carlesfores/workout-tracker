@@ -1,4 +1,10 @@
 <script setup>
+const props = defineProps({
+  workout: {
+    type: Object,
+    required: true,
+  },
+});
 </script>
 
 <template>

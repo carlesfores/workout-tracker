@@ -5,7 +5,8 @@
   <div class="admin-view">
     <div class="admin-view__content">
       <div class="section-view">
-        <div class="section-view__title">ADMIN PANEL</div>
+        <div class="section-view__title">LANGUAGUE</div>
+        <div>Select languague</div>
       </div>
     </div>
   </div>

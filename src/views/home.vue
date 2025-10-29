@@ -55,19 +55,12 @@ const todayWorkouts = computed(() => {
 
       <div v-if="todayWorkouts.length === 0" class="section-view">
         <div class="section-view__title">NO WORKOUTS TODAY</div>
-
         <div>
-          <p>
-            You don't have defined workouts for today, create a new workout or
-            relax and enjoy the day.
-          </p>
-          <div
-            class="section-view__button"
-            @click="router.push({ path: '/workouts-list' })"
-          >
-            CREATE WORKOUT
-          </div>
+          You don't have defined workouts for today relax and enjoy the day.
         </div>
+        <!-- <div class="section-view__button" @click="router.push({ path: '/workouts-list' })">
+          CREATE WORKOUT
+        </div> -->
       </div>
     </div>
 

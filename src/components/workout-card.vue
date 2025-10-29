@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import workoutStatus from "@/components/workout-status.vue";
 
 const props = defineProps({
@@ -11,6 +12,12 @@ const props = defineProps({
     default: false,
   },
 });
+
+const isCollapsed = ref(true);
+
+const toggleCollapsed = () => {
+  isCollapsed.value = !isCollapsed.value;
+};
 </script>
 
 <template>
@@ -18,15 +25,16 @@ const props = defineProps({
     <div class="workout-card__header">
       <div class="workout-card__header-title">{{ workout.title }}</div>
       <workout-status v-if="showStatus"></workout-status>
-    </div>
-    <div class="workout-card__content">
-      <div>
-        <div>{{ (workout.day || []).toString() }}</div>
+      <div class="workout-card__toggle" @click="toggleCollapsed">
+        {{ isCollapsed ? "▼" : "▲" }}
       </div>
-      <div>
+    </div>
+    <transition>
+      <div v-show="!isCollapsed" class="workout-card__content">
+        <div>{{ (workout.day || []).toString() }}</div>
         <div>{{ (workout.excercices || []).toString() }}</div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -34,7 +42,7 @@ const props = defineProps({
 .workout-card {
   display: flex;
   flex-direction: column;
-  min-height: 128px;
+  
   width: 100%;
   background-color: #ffffff;
   border: 1px solid #0f0c5d;
@@ -49,11 +57,18 @@ const props = defineProps({
     padding: 8px 16px;
   }
 
+  &__toggle {
+    cursor: pointer;
+    font-size: 18px;
+    user-select: none;
+  }
+
   &__content {
     padding: 8px 16px;
     display: flex;
     flex-direction: column;
     gap: 4px;
+    min-height: 128px;
   }
 }
 </style>
