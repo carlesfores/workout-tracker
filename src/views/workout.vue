@@ -12,6 +12,15 @@ const props = defineProps({
     <div class="workout-view__content">
       <div class="section-view">
         <div class="section-view__title">WORKOUT NAME</div>
+        <div>Workout name</div>
+        <div class="section-view__title">WORKOUT NAME</div>
+        <div>Workout days</div>
+        <div class="section-view__title">EXCERCICES</div>
+        <div>Excercices</div>
+      </div>
+
+      <div class="section-view">
+        <div class="section-view__button">CREATE</div>
       </div>
     </div>
   </div>

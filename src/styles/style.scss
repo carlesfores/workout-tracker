@@ -8,3 +8,69 @@ html, body {
 #app {
   //height: 100%;
 }
+
+.section-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  &__title {
+    color: #0f0c5d;
+    font-weight: bold;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    height: 36px;
+    cursor: pointer;
+    color: #0f0c5d;
+    border: 1px solid #0f0c5d;
+    background-color: #ffffff;
+    padding: 0px 16px;
+    width: fit-content;
+  }
+  &__button:hover {
+    color: #ffffff;
+    background-color: #0f0c5d;
+  }
+}
+
+.custom-badge {
+  font-size: 12px;
+  background-color: #dbeafe;
+  border: 1px solid #60a5fa;
+  color: #1e40af;
+  padding: 2px 10px;
+  border-radius: 0.25rem;
+  height: 22px;
+
+  &--excercice {
+    background-color: #fef3c7;
+    border: 1px solid #fcd34d;;
+    color: #92400e;
+  }
+
+  // --color-yellow-100: #fef3c7;
+  // --color-yellow-200: #fde68a;
+  // --color-yellow-300: #fcd34d;
+  // --color-yellow-400: #fbbf24;
+  // --color-yellow-500: #f59e0b;
+  // --color-yellow-600: #d97706;
+  // --color-yellow-700: #b45309;
+  // --color-yellow-800: #92400e;
+
+  // --color-blue-100: #dbeafe;
+  // --color-blue-200: #bfdbfe;
+  // --color-blue-300: #93c5fd;
+  // --color-blue-400: #60a5fa;
+  // --color-blue-500: #3b82f6;
+  // --color-blue-600: #2563eb;
+  // --color-blue-700: #1d4ed8;
+  // --color-blue-800: #1e40af;
+}

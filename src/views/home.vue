@@ -98,35 +98,4 @@ const todayWorkouts = computed(() => {
     gap: 16px;
   }
 }
-.section-view {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  &__title {
-    color: #0f0c5d;
-    font-weight: bold;
-  }
-  &__content {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  &__button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    height: 36px;
-    cursor: pointer;
-    color: #0f0c5d;
-    border: 1px solid #0f0c5d;
-    background-color: #ffffff;
-    padding: 0px 16px;
-    width: fit-content;
-  }
-  &__button:hover {
-    color: #ffffff;
-    background-color: #0f0c5d;
-  }
-}
 </style>
