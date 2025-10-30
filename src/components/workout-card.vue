@@ -49,21 +49,35 @@ const capitalice = (w) => {
 
 <template>
   <div class="workout-card">
+
     <div class="workout-card__header" @click="toggleCollapsed">
-      <div class="workout-card__header-title">{{ workout.title }}</div>
+      <div class="workout-card__header-title">
+        <div>{{ workout.title }}</div>
+      </div>
       <workout-status v-if="showStatus"></workout-status>
       <div class="workout-card__toggle">
         {{ isCollapsed ? "▼" : "▲" }}
       </div>
     </div>
+
     <transition>
+
       <div v-show="!isCollapsed" class="workout-card__content">
+
         <div class="workout-card__days">
-          <span v-for="(day, index) in days" :key="index" class="custom-badge">
+          <div v-for="(day, index) in days" :key="index" class="custom-badge">
             {{ capitalice(day) }}
-          </span>
+          </div>
+          <div
+            v-for="(excercice, index) in excercices"
+            :key="index"
+            class="custom-badge custom-badge--excercice"
+          >
+            {{ capitalice(excercice) }}
+          </div>
         </div>
-        <div class="workout-card__excercices">
+
+        <!-- <div class="workout-card__excercices">
           <span
             v-for="(excercice, index) in excercices"
             :key="index"
@@ -71,7 +85,8 @@ const capitalice = (w) => {
           >
             {{ capitalice(excercice) }}
           </span>
-        </div>
+        </div> -->
+
         <div class="workout-card__actions">
           <div
             v-for="({ label, action }, index) in actions"
@@ -81,6 +96,7 @@ const capitalice = (w) => {
             [{{ label }}]
           </div>
         </div>
+
       </div>
     </transition>
   </div>
@@ -113,20 +129,23 @@ const capitalice = (w) => {
 
   &__content {
     padding: 8px 16px;
-    min-height: 128px;
-    display: grid;
-    grid-template-rows: 22px auto 22px;
-    gap: 8px;
+    min-height: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
   }
 
   &__days {
     display: flex;
     gap: 6px;
+    flex-wrap: wrap;
   }
 
   &__excercices {
     display: flex;
-    gap: 8px;
+    gap: 6px;
+    flex-wrap: wrap;
   }
 
   &__actions {

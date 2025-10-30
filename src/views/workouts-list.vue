@@ -8,9 +8,9 @@ const router = useRouter();
 
 const workouts = ref([
   {
-    title: "(Biceps + Chest) Workout",
+    title: "Biceps, Chest",
     day: ["tue"],
-    excercices: ["Biceps_1", "Biceps_3", "Biceps_7"],
+    excercices: ["Biceps_1", "Biceps_3", "Biceps_7", "Chest_1", "Chest_3"],
   },
   {
     title: "Cardio",
@@ -30,6 +30,10 @@ const workouts = ref([
     title: "Sauna",
     day: ["wed"],
   },
+  {
+    title: "Cardio, Sauna",
+    day: ["sat", "sun", "mon"],
+  }
 ]);
 </script>
 
