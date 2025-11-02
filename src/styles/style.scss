@@ -1,6 +1,7 @@
-html, body {
+html,
+body {
   height: 100%;
-  background-color: #EEF2FF;
+  background-color: #eef2ff;
   font-family: "Noto Sans", sans-serif;
   font-size: 14px;
 }
@@ -13,6 +14,16 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
   &__title {
     color: #0f0c5d;
     font-weight: bold;
@@ -22,6 +33,7 @@ html, body {
     flex-direction: column;
     gap: 16px;
   }
+
   &__button {
     display: flex;
     align-items: center;
@@ -34,10 +46,17 @@ html, body {
     background-color: #ffffff;
     padding: 0px 16px;
     width: fit-content;
+
+    border: 1px solid #0f0c5d;
+    border-bottom-width: medium;
+    border-left-width: thin;
+    border-right-width: medium;
+    border-radius: 3px 4px 3px 4px;
   }
   &__button:hover {
-    color: #ffffff;
-    background-color: #0f0c5d;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+    transform: translateY(2px);
   }
 }
 
@@ -52,7 +71,7 @@ html, body {
 
   &--excercice {
     background-color: #fef3c7;
-    border: 1px solid #fcd34d;;
+    border: 1px solid #fcd34d;
     color: #92400e;
   }
 
@@ -73,4 +92,12 @@ html, body {
   // --color-blue-600: #2563eb;
   // --color-blue-700: #1d4ed8;
   // --color-blue-800: #1e40af;
+}
+
+.custom-link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+  color: #34345c;
 }

@@ -6,7 +6,7 @@ const props = defineProps({
   status: {
     type: String,
     default: WORKOUT_STATUS.TODO,
-  }
+  },
 });
 
 const statusClass = computed(() => {
@@ -23,7 +23,6 @@ const statusClass = computed(() => {
     return "workout-status--canceled";
   }
 });
-
 </script>
 
 <template>

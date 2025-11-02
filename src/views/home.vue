@@ -1,35 +1,12 @@
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import workoutCard from "@/components/workout-card.vue";
 import { useRouter } from "vue-router";
+import { useWorkout } from "@/composables/workout";
 
 const router = useRouter();
 
-const workouts = ref([
-  {
-    title: "(Biceps + Chest) Workout",
-    day: ["tue"],
-    excercices: ["Biceps_1", "Biceps_3", "Biceps_7"],
-  },
-  {
-    title: "Cardio",
-    day: ["tue"],
-    excercices: ["Cardio_1", "Cardio_3", "Cardio_7"],
-  },
-  {
-    title: "Sauna",
-    day: ["tue", "wed"],
-  },
-  {
-    title: "Chest",
-    day: ["wed"],
-    excercices: ["Chest_1", "Chest_3", "Chest_7"],
-  },
-  {
-    title: "Sauna",
-    day: ["wed"],
-  },
-]);
+const { workouts } = useWorkout();
 
 const today = computed(() => "sat");
 
@@ -46,10 +23,10 @@ const todayWorkouts = computed(() => {
       <div v-if="todayWorkouts.length > 0" class="section-view">
         <div class="section-view__title">FOR TODAY</div>
         <workout-card
-          v-for="(workout, index) in todayWorkouts"
-          :key="index"
+          v-for="workout in todayWorkouts"
+          :key="workout.id"
           :workout="workout"
-          :show-status="true"
+          :preview="true"
         />
       </div>
 
@@ -58,9 +35,6 @@ const todayWorkouts = computed(() => {
         <div>
           You don't have defined workouts for today relax and enjoy the day.
         </div>
-        <!-- <div class="section-view__button" @click="router.push({ path: '/workouts-list' })">
-          CREATE WORKOUT
-        </div> -->
       </div>
     </div>
 
@@ -71,16 +45,6 @@ const todayWorkouts = computed(() => {
         @click="router.push({ path: '/workout' })"
       >
         FREE WORKOUT
-      </div>
-    </div>
-
-    <div class="section-view">
-      <div class="section-view__title">PERSONALIZE</div>
-      <div
-        class="section-view__button"
-        @click="router.push({ path: '/admin' })"
-      >
-        ADMIN PANEL
       </div>
     </div>
   </div>

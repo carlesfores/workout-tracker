@@ -1,19 +1,27 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, defineEmits } from "vue";
 import workoutStatus from "@/components/workout-status.vue";
+
+const emit = defineEmits([
+  "toggle-collapse",
+  "update-workout",
+  "delete-workout",
+]);
 
 const props = defineProps({
   workout: {
     type: Object,
     required: true,
   },
-  showStatus: {
+  isCollapsed: {
+    type: Boolean,
+    default: false,
+  },
+  preview: {
     type: Boolean,
     default: false,
   },
 });
-
-const isCollapsed = ref(false);
 
 const actions = [
   {
@@ -22,7 +30,7 @@ const actions = [
   },
   {
     label: "edit",
-    action: "edit-workout",
+    action: "update-workout",
   },
 ];
 
@@ -35,11 +43,7 @@ const excercices = computed(() => {
 });
 
 const handleAction = (action) => {
-  console.log(action);
-};
-
-const toggleCollapsed = () => {
-  isCollapsed.value = !isCollapsed.value;
+  emit(action);
 };
 
 const capitalice = (w) => {
@@ -49,21 +53,18 @@ const capitalice = (w) => {
 
 <template>
   <div class="workout-card">
-
-    <div class="workout-card__header" @click="toggleCollapsed">
+    <div class="workout-card__header" @click="handleAction('toggle-collapse')">
       <div class="workout-card__header-title">
         <div>{{ workout.title }}</div>
       </div>
-      <workout-status v-if="showStatus"></workout-status>
-      <div class="workout-card__toggle">
+      <workout-status v-if="preview"></workout-status>
+      <div v-if="!preview" class="workout-card__toggle">
         {{ isCollapsed ? "▼" : "▲" }}
       </div>
     </div>
 
     <transition>
-
       <div v-show="!isCollapsed" class="workout-card__content">
-
         <div class="workout-card__days">
           <div v-for="(day, index) in days" :key="index" class="custom-badge">
             {{ capitalice(day) }}
@@ -77,26 +78,16 @@ const capitalice = (w) => {
           </div>
         </div>
 
-        <!-- <div class="workout-card__excercices">
-          <span
-            v-for="(excercice, index) in excercices"
-            :key="index"
-            class="custom-badge custom-badge--excercice"
-          >
-            {{ capitalice(excercice) }}
-          </span>
-        </div> -->
-
-        <div class="workout-card__actions">
+        <div v-if="!preview" class="workout-card__actions">
           <div
             v-for="({ label, action }, index) in actions"
             :key="index"
+            class="custom-link"
             @click="handleAction(action)"
           >
             [{{ label }}]
           </div>
         </div>
-
       </div>
     </transition>
   </div>
@@ -109,8 +100,10 @@ const capitalice = (w) => {
   width: 100%;
   background-color: #ffffff;
   border: 1px solid #0f0c5d;
-  // box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-  //   rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border-bottom-width: medium;
+  border-left-width: thin;
+  border-right-width: medium;
+  border-radius: 3px 4px 3px 4px;
 
   &__header {
     background-color: #c9cde8;
@@ -121,6 +114,7 @@ const capitalice = (w) => {
     align-items: center;
     cursor: pointer;
     user-select: none;
+    font-weight: bold;
   }
 
   &__toggle {

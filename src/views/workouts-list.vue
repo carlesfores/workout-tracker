@@ -1,47 +1,49 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import workoutCard from "@/components/workout-card.vue";
-
 import { useRouter } from "vue-router";
+import { useWorkout } from "@/composables/workout";
 
 const router = useRouter();
+const { workouts, deleteWorkout } = useWorkout();
 
-const workouts = ref([
-  {
-    title: "Biceps, Chest",
-    day: ["tue"],
-    excercices: ["Biceps_1", "Biceps_3", "Biceps_7", "Chest_1", "Chest_3"],
-  },
-  {
-    title: "Cardio",
-    day: ["tue"],
-    excercices: ["Cardio_1", "Cardio_3", "Cardio_7"],
-  },
-  {
-    title: "Sauna",
-    day: ["tue", "wed"],
-  },
-  {
-    title: "Chest",
-    day: ["wed"],
-    excercices: ["Chest_1", "Chest_3", "Chest_7"],
-  },
-  {
-    title: "Sauna",
-    day: ["wed"],
-  },
-  {
-    title: "Cardio, Sauna",
-    day: ["sat", "sun", "mon"],
+const collapsedWorkoutCards = ref([]);
+
+const hasWorkouts = computed(() => {
+  return workouts.value.length > 0;
+});
+
+const isCollapsed = (workoutId) => {
+  return collapsedWorkoutCards.value.includes(workoutId);
+};
+
+const collapseAll = () => {
+  collapsedWorkoutCards.value = [];
+
+  for (let workout of workouts.value) {
+    collapsedWorkoutCards.value.push(workout.id);
   }
-]);
+};
+
+const togglecollapse = (workoutId) => {
+  const index = collapsedWorkoutCards.value.indexOf(workoutId);
+
+  if (index > -1) {
+    collapsedWorkoutCards.value.splice(index, 1);
+  } else {
+    collapsedWorkoutCards.value.push(workoutId);
+  }
+};
+
+const goToWorkout = (workoutId = null) => {
+  router.push({ path: `/workout/${workoutId}`, params: workoutId });
+};
 </script>
 
 <template>
   <div class="workouts-list-view">
     <div class="workouts-list-view__content">
       <div class="section-view">
-        <div class="section-view__title">ADD WORKOUT</div>
         <div
           class="section-view__button"
           @click="router.push({ path: '/workout' })"
@@ -51,12 +53,27 @@ const workouts = ref([
       </div>
 
       <div class="section-view">
-        <div class="section-view__title">WORKOUTS</div>
-        <div v-if="workouts.length === 0">No workouts created.</div>
+        <div class="section-view__header">
+          <div class="section-view__title">WORKOUTS</div>
+          <div
+            v-if="hasWorkouts"
+            class="section-view__actions custom-link"
+            @click="collapseAll"
+          >
+            [collapse]
+          </div>
+        </div>
+
+        <div v-if="!hasWorkouts">No workouts created.</div>
+
         <workout-card
-          v-for="(workout, index) in workouts"
-          :key="index"
+          v-for="workout in workouts"
+          :key="workout.id"
           :workout="workout"
+          :is-collapsed="isCollapsed(workout.id)"
+          @toggle-collapse="togglecollapse(workout.id)"
+          @update-workout="goToWorkout(workout.id)"
+          @delete-workout="deleteWorkout(workout.id)"
         />
       </div>
     </div>
